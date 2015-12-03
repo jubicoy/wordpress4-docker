@@ -29,7 +29,7 @@ define('DB_USER', 'username_here');
 define('DB_PASSWORD', 'password_here');
 
 /** MySQL hostname */
-define('DB_HOST', 'localhost');
+define('DB_HOST', 'wordpress-db');
 
 /** Database Charset to use in creating database tables. */
 define('DB_CHARSET', 'utf8');
@@ -78,6 +78,9 @@ $table_prefix  = 'wp_';
  * @link https://codex.wordpress.org/Debugging_in_WordPress
  */
 define('WP_DEBUG', false);
+
+/* Override file system access method. */
+define('FS_METHOD', 'direct');
 
 /* That's all, stop editing! Happy blogging. */
 
