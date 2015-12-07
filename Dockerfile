@@ -20,7 +20,7 @@ RUN mv  /var/www/wordpress/wp-content/plugins /tmp/ && \
     mv  /var/www/wordpress/wp-content/index.php /tmp/index.php
 
 RUN chmod -R 777 /tmp/plugins && \
-    chmod -R 777 /tmp/themes && 
+    chmod -R 777 /tmp/themes 
 
 # Add configuration files
 ADD config/default.conf /etc/nginx/conf.d/default.conf
