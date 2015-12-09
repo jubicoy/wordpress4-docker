@@ -82,6 +82,9 @@ define('WP_DEBUG', false);
 /* Override file system access method. */
 define('FS_METHOD', 'direct');
 
+/* Disable automatic updates. */
+define( 'AUTOMATIC_UPDATER_DISABLED', true );
+
 /* That's all, stop editing! Happy blogging. */
 
 /** Absolute path to the WordPress directory. */

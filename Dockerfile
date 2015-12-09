@@ -1,5 +1,5 @@
 FROM jubicoy/nginx-php:latest
-ENV WP_VERSION 4.3.1
+ENV WP_VERSION 4.4
 
 # Additional web server requirements
 RUN apt-get update && apt-get install -y \
@@ -20,7 +20,7 @@ RUN mv  /var/www/wordpress/wp-content/plugins /tmp/ && \
     mv  /var/www/wordpress/wp-content/index.php /tmp/index.php
 
 RUN chmod -R 777 /tmp/plugins && \
-    chmod -R 777 /tmp/themes 
+    chmod -R 777 /tmp/themes
 
 # Add configuration files
 ADD config/default.conf /etc/nginx/conf.d/default.conf
