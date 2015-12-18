@@ -10,6 +10,8 @@ RUN apt-get update && apt-get install -y \
     php5-recode php5-sqlite php5-tidy php5-xmlrpc \
     php5-xsl gzip
 
+RUN apt-get install -y apache2-utils
+
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 RUN curl -k https://wordpress.org/wordpress-$WP_VERSION.tar.gz | tar zx -C /var/www/
@@ -27,11 +29,17 @@ ADD config/default.conf /etc/nginx/conf.d/default.conf
 ADD config/wp-config.php /workdir/wp-config.php
 ADD entrypoint.sh /workdir/entrypoint.sh
 
+# WebDAV configuration
+ADD config/webdav.conf /etc/nginx/conf.d/webdav.conf
+
 RUN ln -s /var/www/wordpress/wp-content/wp-config.php /var/www/wordpress/wp-config.php
 
 RUN chown -R 104:0 /var/www && chmod -R g+rw /var/www && \
     chmod a+x /workdir/entrypoint.sh && chmod g+rw /workdir
 
 VOLUME ["/var/www/wordpress/wp-content"]
+
+EXPOSE 5000
+EXPOSE 5005
 
 USER 104

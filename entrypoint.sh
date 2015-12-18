@@ -19,4 +19,9 @@ if [ ! -f /var/www/wordpress/wp-content/wp-config.php ]; then
     cp -arf /tmp/index.php /var/www/wordpress/wp-content/
 fi
 
+if [ ! -f /tmp/dav_auth ]; then
+  # Create WebDAV Basic auth user
+  echo ${DAV_PASS}|htpasswd -i -c /tmp/dav_auth ${DAV_USER}
+fi
+
 exec "/usr/bin/supervisord"
