@@ -12,6 +12,7 @@ if [ ! -f /var/www/wordpress/wp-content/wp-config.php ]; then
     sed -i "s/database_name_here/${MYSQL_DATABASE}/g" /var/www/wordpress/wp-content/wp-config.php
     sed -i "s/username_here/${MYSQL_USER}/g" /var/www/wordpress/wp-content/wp-config.php
     sed -i "s/password_here/${MYSQL_PASSWORD}/g" /var/www/wordpress/wp-content/wp-config.php
+    sed -i "s/db_host_here/${DB_HOST}/g" /var/www/wordpress/wp-content/wp-config.php
 
     # Move default plugins and themes back to volume
     cp -arf /tmp/plugins /var/www/wordpress/wp-content/
