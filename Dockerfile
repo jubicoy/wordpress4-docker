@@ -29,8 +29,17 @@ ADD config/default.conf /etc/nginx/conf.d/default.conf
 ADD config/wp-config.php /workdir/wp-config.php
 ADD entrypoint.sh /workdir/entrypoint.sh
 
+# Composer for Sabre installation
+ENV COMPOSER_VERSION 1.0.0-alpha11
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer --version=${COMPOSER_VERSION}
+
 # WebDAV configuration
+RUN mkdir -p /var/www/webdav && mkdir -p /var/www/webdav/locks && chmod -R 777 /var/www/webdav/locks
 ADD config/webdav.conf /etc/nginx/conf.d/webdav.conf
+ADD sabre/index.php /var/www/webdav/index.php
+
+# Sabre with composer
+RUN cd /var/www/webdav && composer require sabre/dav ~3.1.0 && composer update sabre/dav && cd
 
 RUN ln -s /var/www/wordpress/wp-content/wp-config.php /var/www/wordpress/wp-config.php
 
