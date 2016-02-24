@@ -21,6 +21,8 @@ if [ ! -f /var/www/wordpress/wp-content/wp-config.php ]; then
 fi
 
 if [ ! -f /tmp/dav_auth ]; then
+  # Create locks file
+  # touch /tmp/davlocks
   # Create WebDAV Basic auth user
   echo ${DAV_PASS}|htpasswd -i -c /tmp/dav_auth ${DAV_USER}
 fi
