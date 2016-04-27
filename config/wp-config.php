@@ -82,6 +82,10 @@ define('WP_DEBUG', false);
 /* Override file system access method. */
 define('FS_METHOD', 'direct');
 
+/* Redirect SSL URLs */
+if ($_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')
+       $_SERVER['HTTPS']='on';
+
 /* Disable automatic updates. */
 define( 'AUTOMATIC_UPDATER_DISABLED', true );
 
