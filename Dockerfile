@@ -1,5 +1,5 @@
 FROM jubicoy/nginx-php:latest
-ENV WP_VERSION 4.5.3
+ENV WP_VERSION 4.6
 
 # Additional web server requirements
 RUN apt-get update && apt-get install -y \
