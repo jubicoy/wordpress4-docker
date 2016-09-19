@@ -1,5 +1,5 @@
 FROM jubicoy/nginx-php:latest
-ENV WP_VERSION 4.6
+ENV WP_VERSION 4.6.1
 
 # Additional web server requirements
 RUN apt-get update && apt-get install -y \
@@ -45,6 +45,10 @@ RUN ln -s /var/www/wordpress/wp-content/wp-config.php /var/www/wordpress/wp-conf
 
 RUN chown -R 104:0 /var/www && chmod -R g+rw /var/www && \
     chmod a+x /workdir/entrypoint.sh && chmod g+rw /workdir
+
+# PHP max upload size
+RUN sed -i '/upload_max_filesize/c\upload_max_filesize = 250M' /etc/php5/fpm/php.ini
+RUN sed -i '/post_max_size/c\post_max_size = 250M' /etc/php5/fpm/php.ini
 
 VOLUME ["/var/www/wordpress/wp-content"]
 
