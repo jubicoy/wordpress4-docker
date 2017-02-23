@@ -1,16 +1,17 @@
-FROM jubicoy/nginx-php:latest
-ENV WP_VERSION 4.6.1
+FROM jubicoy/nginx-php:php7
+ENV WP_VERSION 4.7.2
 
 # Additional web server requirements
-RUN apt-get update && apt-get install -y \
-    php5-mysql php-apc pwgen python-setuptools \
-    curl git unzip php5-curl php5-gd php5-intl \
-    php-pear php5-imagick php5-imap php5-mcrypt \
-    php5-memcache php5-ming php5-ps php5-pspell \
-    php5-recode php5-sqlite php5-tidy php5-xmlrpc \
-    php5-xsl gzip
+RUN apt-get update && apt-get -y install \
+    php7.0-fpm php7.0-common php7.0-cgi \
+    php7.0-mysql php-apcu pwgen python-setuptools \
+    curl git unzip php7.0-curl php7.0-gd php7.0-intl \
+    php-pear php-imagick php7.0-imap php7.0-mcrypt \
+    php-memcache php7.0-pspell \
+    php7.0-recode php7.0-sqlite php7.0-tidy php7.0-xmlrpc \
+    php7.0-xsl php7.0-mbstring gzip apache2-utils
 
-RUN apt-get install -y apache2-utils
+#RUN apt-get install -y apache2-utils
 
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
@@ -47,8 +48,8 @@ RUN chown -R 104:0 /var/www && chmod -R g+rw /var/www && \
     chmod a+x /workdir/entrypoint.sh && chmod g+rw /workdir
 
 # PHP max upload size
-RUN sed -i '/upload_max_filesize/c\upload_max_filesize = 250M' /etc/php5/fpm/php.ini
-RUN sed -i '/post_max_size/c\post_max_size = 250M' /etc/php5/fpm/php.ini
+RUN sed -i '/upload_max_filesize/c\upload_max_filesize = 250M' /etc/php/7.0/fpm/php.ini
+RUN sed -i '/post_max_size/c\post_max_size = 250M' /etc/php/7.0/fpm/php.ini
 
 VOLUME ["/var/www/wordpress/wp-content"]
 
