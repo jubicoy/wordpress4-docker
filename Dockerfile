@@ -1,8 +1,8 @@
 FROM jubicoy/nginx-php:php7
-ENV WP_VERSION 4.7
+ENV WP_VERSION 4.7.2
 
 # Additional web server requirements
-RUN apt-get update && apt-get install -y \
+RUN apt-get update && apt-get -f install -y \
     php7.0-mysql php-apcu pwgen python-setuptools \
     curl git unzip php7.0-curl php7.0-gd php7.0-intl \
     php-pear php-imagick php7.0-imap php7.0-mcrypt \
