@@ -83,7 +83,11 @@
                 },
 		"port": {
 		    "targetPort": "web"
-		}
+		},
+                "tls": {
+                    "termination": "edge",
+                    "insecureEdgeTerminationPolicy": "Allow"
+                }
             }
         },
         {

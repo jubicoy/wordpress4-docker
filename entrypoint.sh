@@ -27,4 +27,10 @@ if [ ! -f /tmp/dav_auth ]; then
   echo ${DAV_PASS}|htpasswd -i -c /tmp/dav_auth ${DAV_USER}
 fi
 
+# Add nginx configuration if does not exist
+if [ ! -f /var/www/wordpress/wp-content/default.conf ]; then
+  mkdir -p /var/www/wordpress/wp-content/conf/
+  mv /workdir/default.conf /var/www/wordpress/wp-content/default.conf
+fi
+
 exec "/usr/bin/supervisord"
