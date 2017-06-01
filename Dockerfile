@@ -29,7 +29,7 @@ RUN chmod -R 777 /tmp/plugins && \
 ADD config/default.conf /workdir/default.conf
 ADD config/wp-config.php /workdir/wp-config.php
 ADD entrypoint.sh /workdir/entrypoint.sh
-RUN rm -f /etc/nginx/conf.d/default.conf && ln -s /var/www/wordpress/wp-content/default.conf /etc/nginx/conf.d/default.conf
+RUN rm -f /etc/nginx/conf.d/default.conf && ln -s /var/www/wordpress/wp-content/conf/default.conf /etc/nginx/conf.d/default.conf
 
 # Composer for Sabre installation
 ENV COMPOSER_VERSION 1.0.0-alpha11
