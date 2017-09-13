@@ -33,4 +33,8 @@ if [ ! -f /var/www/wordpress/wp-content/conf/default.conf ]; then
   mv /workdir/default.conf /var/www/wordpress/wp-content/conf/default.conf
 fi
 
+if [ ! -f /var/www/wordpress/wp-content/conf/php.ini ]; then
+  mv /tmp/php.ini /var/www/wordpress/wp-content/conf/php.ini
+fi
+
 exec "/usr/bin/supervisord"
