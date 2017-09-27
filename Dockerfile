@@ -1,5 +1,5 @@
 FROM jubicoy/nginx-php:php7
-ENV WP_VERSION 4.8.1
+ENV WP_VERSION 4.8.2
 
 # Additional web server requirements
 RUN apt-get update && apt-get -y install \
