@@ -1,5 +1,7 @@
 FROM jubicoy/nginx-php:php7
-ENV WP_VERSION 4.8.2
+
+ENV WP_VERSION ${WP_VERSION:-4.8.2]
+ENV WP_IMAGE_COMMIT ${WP_IMAGE_COMMIT:-dev}
 
 # Additional web server requirements
 RUN apt-get update && apt-get -y install \
