@@ -1,6 +1,6 @@
 FROM jubicoy/nginx-php:php7
 
-ENV WP_VERSION ${WP_VERSION:-4.8.2]
+ENV WP_VERSION ${WP_VERSION:-4.9.1}
 ENV WP_IMAGE_COMMIT ${WP_IMAGE_COMMIT:-dev}
 
 # Additional web server requirements
@@ -50,7 +50,7 @@ RUN cd /var/www/webdav && composer require sabre/dav ~3.1.0 && composer update s
 RUN ln -s /var/www/wordpress/wp-content/wp-config.php /var/www/wordpress/wp-config.php
 RUN ln -s /var/www/wordpress/wp-content/conf/php.ini /etc/php/7.0/fpm/php.ini
 
-RUN chown -R 104:0 /var/www && chmod -R g+rw /var/www && \
+RUN chown -R 104:0 /var/www && chmod -R g+rw /var/www && chmod a+rwx /var/lib/nginx && \
     chmod a+x /workdir/entrypoint.sh && chmod g+rw /workdir
 
 # PHP max upload size
