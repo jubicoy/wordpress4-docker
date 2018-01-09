@@ -9,7 +9,7 @@ RUN apt-get update && apt-get -y install \
     php7.0-mysql php-apcu pwgen python-setuptools \
     curl git unzip php7.0-curl php7.0-gd php7.0-intl \
     php-pear php-imagick php7.0-imap php7.0-mcrypt \
-    php-memcache php7.0-pspell php7.0-soap \
+    php-memcache php7.0-pspell php7.0-soap php7.0-zip \
     php7.0-recode php7.0-sqlite php7.0-tidy php7.0-xmlrpc \
     php7.0-xsl php7.0-mbstring gzip apache2-utils && \
     apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
